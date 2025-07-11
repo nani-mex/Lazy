@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>I Love You Heart</title>
+  <style>
+    body {
+      background-color: #F0D2DA;
+      color: #101000;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    span {
+      position: absolute;
+      white-space: nowrap;
+      font-size: 27px;
+      animation: spin 10s linear infinite;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 2s infinite alternate;
+    }
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="heart" id="heart"></div>
+
+  <script>
+    const heart = document.getElementById('heart');
+    const text = 'I LIKE U BOO ';
+    const count = 100;
+
+    for (let i = 0; i < count; i++) {
+      const angle = i * (2 * Math.PI / count);
+      const x = 160 * Math.pow(Math.sin(angle), 3);
+      const y = -130 * Math.cos(angle) + 50 * Math.cos(2 * angle) + 20 * Math.cos(3 * angle) + 10 * Math.cos(4 * angle);
+
+      const span = document.createElement('span');
+      span.innerText = text;
+      span.style.left = `${x}px`;
+      span.style.top = `${y}px`;
+      heart.appendChild(span);
+    }
+    const numStars = 100;
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = `${Math.random() * window.innerHeight}px`;
+      star.style.left = `${Math.random() * window.innerWidth}px`;
+      star.style.animationDuration = `${1 + Math.random() * 2}s`;
+      document.body.appendChild(star);
+    }
+  </script>
+</body>
+</html>
